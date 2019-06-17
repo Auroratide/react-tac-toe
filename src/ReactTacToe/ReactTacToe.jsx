@@ -1,6 +1,6 @@
 import React from 'react';
 
 const ReactTacToe = () =>
-  <>Hello world!</>;
+  <span>Hello world</span>;
 
 export default ReactTacToe;
