@@ -1,6 +1,7 @@
 import React from 'react';
+import Board from './Board';
 
 const ReactTacToe = () =>
-  <span>Hello world</span>;
+  <Board />;
 
 export default ReactTacToe;

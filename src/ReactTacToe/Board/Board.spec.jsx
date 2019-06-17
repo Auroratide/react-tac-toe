@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
-import ReactTacToe from '.';
+import Board from '.';
 
-describe('ReactTacToe', () => {
+describe('Board', () => {
   it('renders', () => {
-    expect(() => render(<ReactTacToe />)).not.toThrow();
+    expect(() => render(<Board />)).not.toThrow();
   });
 
   afterEach(cleanup);
