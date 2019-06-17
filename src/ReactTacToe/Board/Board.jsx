@@ -1,17 +1,11 @@
 import React from 'react';
 import * as Styled from './Board.styles';
 
-const Board = () =>
+const Board = ({ board, select }) =>
   <Styled.Container>
-    <Styled.Tile>X</Styled.Tile>
-    <Styled.Tile>X</Styled.Tile>
-    <Styled.Tile>O</Styled.Tile>
-    <Styled.Tile>O</Styled.Tile>
-    <Styled.Tile>X</Styled.Tile>
-    <Styled.Tile>X</Styled.Tile>
-    <Styled.Tile>O</Styled.Tile>
-    <Styled.Tile>O</Styled.Tile>
-    <Styled.Tile>X</Styled.Tile>
+    {board.map((mark, i) =>
+      <Styled.Tile key={i} data-testid={`tile-${i}`} onClick={() => select(i)}>{mark}</Styled.Tile>
+    )}
   </Styled.Container>;
 
 export default Board;
