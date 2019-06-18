@@ -7,7 +7,7 @@
     "start": "serve -s public",
     "start:watch": "npm run build && npm-run-all --parallel start 'build -- --watch'",
     "build": "webpack",
-    "test": "jest src"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
