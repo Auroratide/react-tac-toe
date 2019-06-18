@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
   display: grid;
@@ -24,5 +24,9 @@ export const Tile = styled.div`
   &:nth-child(n + 4):not(:nth-child(n + 7)) {
     border-top: 0.25rem solid #333;
     border-bottom: 0.25rem solid #333;
+  }
+
+  &.highlight {
+    color: green;
   }
 `;

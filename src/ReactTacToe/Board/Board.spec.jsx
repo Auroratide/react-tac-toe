@@ -51,5 +51,26 @@ describe('Board', () => {
     });
   });
 
+  describe('when the board is complete', () => {
+    let wrapper;
+    const isHighlighted = n => wrapper.getByTestId(`tile-${n}`).classList.contains('highlight');
+    
+    it('should highlight the tiles containing winning marks', () => {
+      const initialBoard = ['X', 'O', '', 'X', 'O', '', 'X', '', ''];
+      wrapper = render(<Board initialBoard={initialBoard} />);
+
+      expect(isHighlighted(0)).toBe(true);
+      expect(isHighlighted(3)).toBe(true);
+      expect(isHighlighted(6)).toBe(true);
+
+      expect(isHighlighted(1)).toBe(false);
+      expect(isHighlighted(2)).toBe(false);
+      expect(isHighlighted(4)).toBe(false);
+      expect(isHighlighted(5)).toBe(false);
+      expect(isHighlighted(7)).toBe(false);
+      expect(isHighlighted(8)).toBe(false);
+    });
+  });
+
   afterEach(cleanup);
 });
