@@ -34,7 +34,13 @@ export default (initialBoard = blankBoard) => {
   const winningTiles = possibleWinningTileSets.reduce((prev, set) => {
     const winningTiles = getWinningTilesForSet(board, ...set);
     return prev.map((t, i) => t || winningTiles[i]);
-  }, [false, false, false, false, false, false, false, false, false])
-    
-  return { board, select, winningTiles };
+  }, [false, false, false, false, false, false, false, false, false]);
+
+  const anyWinning = winningTiles.some(w => w);
+
+  return board.map((mark, i) => ( {
+    mark,
+    select: !anyWinning && mark === '' ? () => select(i) : null,
+    isWinning: winningTiles[i]
+  } ));   
 }

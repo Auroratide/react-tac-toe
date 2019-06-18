@@ -7,15 +7,15 @@ import {
 import Board from '.';
 
 describe('Board', () => {
+  let wrapper;
+  const clickSquare = n => fireEvent.click(wrapper.getByTestId(`tile-${n}`));
+  const squareMark = n => wrapper.getByTestId(`tile-${n}`).textContent;
+
   it('renders', () => {
     expect(() => render(<Board />)).not.toThrow();
   });
 
   describe('when the board is empty', () => {
-    let wrapper;
-    const clickSquare = n => fireEvent.click(wrapper.getByTestId(`tile-${n}`));
-    const squareMark = n => wrapper.getByTestId(`tile-${n}`).textContent;
-
     it('should populate the first square clicked with an X', () => {
       wrapper = render(<Board />);
       expect(squareMark(0)).toEqual('');
@@ -52,7 +52,6 @@ describe('Board', () => {
   });
 
   describe('when the board is complete', () => {
-    let wrapper;
     const isHighlighted = n => wrapper.getByTestId(`tile-${n}`).classList.contains('highlight');
     
     it('should highlight the tiles containing winning marks', () => {
@@ -69,6 +68,14 @@ describe('Board', () => {
       expect(isHighlighted(5)).toBe(false);
       expect(isHighlighted(7)).toBe(false);
       expect(isHighlighted(8)).toBe(false);
+    });
+
+    it('should prevent tile selection when a player has won', () => {
+      const initialBoard = ['X', 'O', '', 'X', 'O', '', 'X', '', ''];
+      wrapper = render(<Board initialBoard={initialBoard} />);
+
+      clickSquare(8);
+      expect(squareMark(8)).toEqual('');
     });
   });
 
