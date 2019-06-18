@@ -39,6 +39,16 @@ describe('Board', () => {
       clickSquare(3);
       expect(squareMark(3)).toEqual('O');
     });
+
+    it('should not allow the same square to be clicked more than once', () => {
+      wrapper = render(<Board />);
+
+      clickSquare(0);
+      expect(squareMark(0)).toEqual('X');
+
+      clickSquare(0);
+      expect(squareMark(0)).toEqual('X');
+    });
   });
 
   afterEach(cleanup);
