@@ -7,6 +7,7 @@ export const Container = styled.div`
   width: 80vmin;
   height: 80vmin;
   margin: auto;
+  user-select: none;
 `;
 
 export const Tile = styled.div`
