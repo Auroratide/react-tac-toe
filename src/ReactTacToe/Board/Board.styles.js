@@ -27,6 +27,6 @@ export const Tile = styled.div`
   }
 
   &.highlight {
-    color: green;
+    color: #5ebf36;
   }
 `;
