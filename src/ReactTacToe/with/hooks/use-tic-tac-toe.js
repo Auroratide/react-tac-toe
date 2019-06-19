@@ -7,9 +7,9 @@ const columns = [[0, 3, 6], [1, 4, 7], [2, 5, 8]];
 const diagonals = [[0, 4, 8], [2, 4, 6]];
 const possibleWinningTileSets = rows.concat(columns).concat(diagonals);
 
-const getWinningTilesForSet = (board, a, b, c) => {
+const getWinningTilesForSet = (tileMarks, a, b, c) => {
   const winningTiles = [false, false, false, false, false, false, false, false, false];
-  if(board[a] === board[b] && board[b] === board[c] && board[a] !== '') {
+  if(tileMarks[a] === tileMarks[b] && tileMarks[b] === tileMarks[c] && tileMarks[a] !== '') {
     winningTiles[a] = true;
     winningTiles[b] = true;
     winningTiles[c] = true;
@@ -19,28 +19,35 @@ const getWinningTilesForSet = (board, a, b, c) => {
 };
 
 export default (initialBoard = blankBoard) => {
-  const [ board, setBoard ] = useState(initialBoard);
+  const [ tileMarks, setTileMarks ] = useState(initialBoard);
   const [ mark, setMark ] = useState('X');
 
   const swapTurns = () => setMark(prev => prev === 'X' ? 'O' : 'X');
 
   const select = position => {
-    const newBoard = [...board];
+    const newBoard = [...tileMarks];
     newBoard[position] = mark;
-    setBoard(newBoard);
+    setTileMarks(newBoard);
     swapTurns();
   };
 
   const winningTiles = possibleWinningTileSets.reduce((prev, set) => {
-    const winningTiles = getWinningTilesForSet(board, ...set);
+    const winningTiles = getWinningTilesForSet(tileMarks, ...set);
     return prev.map((t, i) => t || winningTiles[i]);
   }, [false, false, false, false, false, false, false, false, false]);
 
   const anyWinning = winningTiles.some(w => w);
 
-  return board.map((mark, i) => ( {
+  const board = tileMarks.map((mark, i) => ( {
     mark,
     select: !anyWinning && mark === '' ? () => select(i) : null,
     isWinning: winningTiles[i]
-  } ));   
+  } ));
+
+  const reset = () => {
+    setTileMarks(blankBoard);
+    setMark('X');
+  };
+
+  return { board, reset };
 }

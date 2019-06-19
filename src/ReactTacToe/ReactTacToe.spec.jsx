@@ -51,6 +51,20 @@ describe('ReactTacToe', () => {
     });
   });
 
+  describe('when the board has marks', () => {
+    const clickReset = () => fireEvent.click(wrapper.getByText(/Reset/i));
+
+    it('should clear the board when the reset button is clicked', () => {
+      const initialBoard = ['X', '', 'O', '', '', '', '', '', ''];
+      wrapper = render(<ReactTacToe initialBoard={initialBoard} />);
+
+      clickReset();
+      initialBoard.forEach((_, i) => {
+        expect(squareMark(i)).toEqual('');
+      });
+    });
+  });
+
   describe('when the board is complete', () => {
     const isHighlighted = n => wrapper.getByTestId(`tile-${n}`).classList.contains('highlight');
     

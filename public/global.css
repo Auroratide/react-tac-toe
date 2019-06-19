@@ -1,3 +1,11 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 html {
   font-family: 'Encode Sans Expanded', sans-serif;
+}
+
+body {
+  margin: 0;
 }
