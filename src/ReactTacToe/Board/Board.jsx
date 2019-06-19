@@ -24,4 +24,8 @@ Board.propTypes = {
   }))
 };
 
+Board.defaultProps = {
+  board: []
+};
+
 export default Board;

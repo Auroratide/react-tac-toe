@@ -1,1 +1,4 @@
-export { default } from './ReactTacToe';
+import ReactTacToe from './ReactTacToe';
+import withHooks from './with/hooks';
+
+export default withHooks(ReactTacToe);
