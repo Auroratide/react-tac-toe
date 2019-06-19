@@ -4,7 +4,7 @@ import {
   fireEvent,
   cleanup
 } from '@testing-library/react';
-import ReactTacToe from '.';
+import { HooksReactTacToe as ReactTacToe } from '.';
 
 describe('ReactTacToe', () => {
   let wrapper;
