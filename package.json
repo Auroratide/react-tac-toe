@@ -13,14 +13,16 @@
   "license": "ISC",
   "dependencies": {
     "mobx": "^5.10.1",
-    "mobx-react": "^6.1.1",
+    "mobx-react-lite": "^1.4.0",
     "prop-types": "^15.7.2",
     "react": "^16.9.0-alpha.0",
     "react-dom": "^16.9.0-alpha.0",
+    "regenerator-runtime": "^0.13.2",
     "styled-components": "^4.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
+    "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "@testing-library/react": "^8.0.1",
