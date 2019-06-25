@@ -1,15 +1,14 @@
 import reducer, {
-  INITIAL_STATE,
+  initialState,
   select,
-  reset,
-  initialize
-} from '.';
+  reset
+} from './reducer';
 
 describe('Tic Tac Toe reducer', () => {
   let state;
 
   beforeEach(() => {
-    state = Object.assign({}, INITIAL_STATE);
+    state = Object.assign({}, initialState());
   });
 
   describe('select', () => {
@@ -47,17 +46,7 @@ describe('Tic Tac Toe reducer', () => {
     it('should clear the board and reset the marker', () => {
       state.board = ['X', 'O', 'X', '', 'O', '', '', '', ''];
 
-      expect(reducer(state, reset())).toEqual(INITIAL_STATE);
-    });
-  });
-
-  describe('initialize', () => {
-    it('should initialize the board with the given state', () => {
-      const marks = ['X', 'O', 'X', '', '', 'O', 'X', 'O', ''];
-
-      expect(reducer(state, initialize(marks))).toMatchObject({
-        board: marks
-      });
+      expect(reducer(state, reset())).toEqual(initialState());
     });
   });
 });

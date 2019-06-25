@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { select, reset, initialize } from './reducer';
-import withProvider from './with-provider';
+import React, { useReducer } from 'react';
+import reducer, {
+  initialState,
+  select,
+  reset
+} from './reducer';
 
 const rows = [[0, 1, 2], [3, 4, 5], [6, 7, 8]];
 const columns = [[0, 3, 6], [1, 4, 7], [2, 5, 8]];
@@ -19,27 +21,21 @@ const getWinningTilesForSet = (tileMarks, a, b, c) => {
   return winningTiles;
 };
 
-export default Component => withProvider(({ initialBoard }) => {
-  const marks = useSelector(state => state.board);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if(initialBoard)
-      dispatch(initialize(initialBoard));
-  }, []);
+export default Component => ({ initialBoard }) => {
+  const [ state, dispatch ] = useReducer(reducer, initialState(initialBoard));
 
   const winningTiles = possibleWinningTileSets.reduce((prev, set) => {
-    const winningTiles = getWinningTilesForSet(marks, ...set);
+    const winningTiles = getWinningTilesForSet(state.board, ...set);
     return prev.map((t, i) => t || winningTiles[i]);
   }, [false, false, false, false, false, false, false, false, false]);
 
   const anyWinning = winningTiles.some(w => w);
 
-  const board = marks.map((mark, i) => ({
+  const board = state.board.map((mark, i) => ({
     mark,
     select: !anyWinning ? () => dispatch(select(i)) : null,
     isWinning: winningTiles[i]
   }));
 
   return <Component board={board} reset={() => dispatch(reset())} />
-});
+};

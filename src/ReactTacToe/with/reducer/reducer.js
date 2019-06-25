@@ -1,7 +1,8 @@
-export const INITIAL_STATE = {
-  board: new Array(9).fill(''),
+const BLANK_BOARD = new Array(9).fill('');
+export const initialState = (initialBoard = BLANK_BOARD) => ({
+  board: initialBoard,
   mark: 'X'
-};
+});
 
 const SELECT = 'TicTacToe::SELECT';
 export const select = position => ({
@@ -23,26 +24,14 @@ const reduceSelect = (state, payload) => {
 
 const RESET = 'TicTacToe::RESET';
 export const reset = () => ({ type: RESET });
-const reduceReset = () => INITIAL_STATE;
+const reduceReset = () => initialState();
 
-const INITIALIZE = 'TicTacToe::INITIALIZE';
-export const initialize = marks => ({
-  type: INITIALIZE,
-  marks
-});
-const reduceInitialize = (state, payload) => ({
-  ...state,
-  board: payload.marks
-});
-
-export default (state = INITIAL_STATE, { type, ...payload }) => {
+export default (state, { type, ...payload }) => {
   switch(type) {
     case SELECT:
       return reduceSelect(state, payload);
     case RESET:
       return reduceReset();
-    case INITIALIZE:
-      return reduceInitialize(state, payload);
     default:
       return state;
   }
