@@ -13,8 +13,6 @@ export default class TicTacToe {
   }
 
   _nextTurn() {
-    this.currentPlayer.startTurn();
-
     reaction(() => this.currentPlayer.selectedBoardPosition, (position, r) => {
       if(!this.board.isMarked(position)) {
         r.dispose();
@@ -26,6 +24,8 @@ export default class TicTacToe {
         }
       }
     });
+    
+    this.currentPlayer.startTurn();
   }
   
   _swapPlayers() {
