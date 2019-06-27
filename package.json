@@ -1,7 +1,7 @@
 {
   "name": "react-tac-toe",
-  "version": "0.1.0",
-  "description": "",
+  "version": "1.0.0",
+  "description": "Example app showcasing a nice way of writing tests in React",
   "main": "index.js",
   "scripts": {
     "start": "serve -s public",
@@ -9,7 +9,10 @@
     "build": "webpack",
     "test": "jest"
   },
-  "author": "",
+  "author": {
+    "name": "Timothy Foster",
+    "url": "https://auroratide.com"
+  },
   "license": "ISC",
   "dependencies": {
     "mobx": "^5.10.1",
