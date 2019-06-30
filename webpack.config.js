@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   name: 'client',
-  mode: 'development',
+  mode: 'production',
   entry: path.join(__dirname, 'src', 'client.jsx'),
   output: {
     filename: 'client.js',
